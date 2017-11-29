@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="css/circlepack.css" rel="stylesheet">
+    <script src="../../js/jquery/jquery-1.10.2.js" charset="utf-8"></script>
+    <script src="../../js/d3.v4.min.js" charset="utf-8"></script>
+    <script src="js/dev.js"></script>
+    <title>D3 Circle Packing Summary</title>
+  </head>
+
+  <body>
+    <div class="container">
+    <svg width="540" height="540"></svg>
+    <div id="target_details" class="inset"></div>
+    </div>
+
+    <script>
+      circlePackSummary("svg", "http://astrocloud-dev.wr.usgs.gov/dataset/data/nomenclature/summary", 
+        "https://planetarynames.wr.usgs.gov/images/layout/stary_bg.jpg");
+    </script>
+  </body>
+</html>

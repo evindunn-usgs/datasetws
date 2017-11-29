@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+<link rel="stylesheet" href="css/style.css">
+<script src="../../js/d3.v3.min.js" charset="utf-8"></script>
+<script src="../../js/jquery/jquery-1.10.2.js" charset="utf-8"></script>
+<title>D3 Chooser for Nomenclature</title>
+<!-- Script -->
+<script src="js/bubbles.js"></script>
+</head>
+<body>
+  <div id="cont" class="container-fluid">
+    
+    <div class="row text-center" style="margin-top: 20px;">
+      <div class="col-sm-4">
+        <div id="topTitle" class="title">A Closer Look at the Solar System</div>
+        <div id="subTitle">The number of named features by planetary system & body</div>
+        <div id="topText">This is a demo for a possible replacement of the Nomenlature home page chooser</div>
+        <hr>
+                  
+        <div id="searchTitle" class="title">Find a Planet</div>
+        <div class="form-group">      
+          <select id="searchBox" class="combobox input-large form-control" style="display: none;"
+          onchange="searchEvent(this.value)">
+             <option value="" selected="selected">Search...</option>
+          </select>
+        </div>
+        
+        <div class="row text-center" style= "margin-top: 30px;">
+          <div class="col-sm-6">
+            <div id="legendTitle">Legend</div>
+            <div id="legendText">The size of each white circle is scaled according to the number of named features, we
+            should probably change this to the diameter of the body?
+                 The bigger the circle, the more named features on the body or in the system
+            </div>
+          </div>
+          <div id="legendRowWrapper" class="col-sm-6">
+            <div id="legendTitle" style="text-align: center;">Number of named features</div>
+            <div id="legendCircles"></div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-sm-8">
+        <div id="loadText">Loading Data</div>
+        <div id="chart"></div>
+      </div>
+    </div>
+    
+    <!-- Attribution -->
+    <div class="row text-center">
+      <div class="col-sm-12">
+        <div id="attribution">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+    
+  <script>
+    setTimeout(drawAll, 500);
+  </script>
+
+</body>
+</html>

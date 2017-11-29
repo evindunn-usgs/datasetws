@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dataset Web Services Io Nomenclature WFS Example</title>
+    <link rel="stylesheet" href="css/ol.css" type="text/css">
+    <script src="js/ol.js"></script>
+    <script type="text/javascript" src="https://astrowebmaps.wr.usgs.gov/webmapatlas/Layers/maps.js"></script>
+    <link rel="stylesheet" href="css/prism.css" type="text/css">
+    <script src="js/prism.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <p>The following example uses OpenLayers to display the dataset web services WFS JSON Nomenclature data for Io</p>
+    </div>
+    <div id="map" class="map" style="width:800px; height:400px;"></div>
+    <script>
+      var vectorSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON(),
+        url: '../data/nomenclature/IO/WFS?request=getFeature&service=WFS&version=1.1.0&outputformat=application/json',
+        strategy: ol.loadingstrategy.bbox
+      });
+
+      var vector = new ol.layer.Vector({
+        source: vectorSource,
+        style: new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'rgba(0, 0, 255, 1.0)',
+            width: 2
+          })
+        })
+      });
+
+      var raster = new ol.layer.Tile({
+        source: new ol.source.TileWMS({
+          params: {
+           'LAYERS': 'SSI_color',
+           'FORMAT': 'image/png',
+           'MAP': '/maps/jupiter/io_simp_cyl.map',
+           'TRANSPARENT': 'false'
+          },
+          url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv"
+        })
+      });
+
+      var map = new ol.Map({
+        layers: [raster, vector],
+        target: document.getElementById('map'),
+        view: new ol.View({
+          center: [180,0],
+          maxZoom: 5,
+          zoom: 2,
+          projection: 'EPSG:4326'
+        })
+      });
+    </script>
+
+    <div id="example">
+    <pre><code class="language-javascript">
+&lt;DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;WFS&lt;title&gt;
+    &lt;link rel="stylesheet" href="css/ol.css" type="text/css"&gt;
+    &lt;script src="js/ol.js"&gt;lt;script&gt;
+    &lt;link rel="stylesheet" href="css/prism.css" type="text/css"&gt;
+    &lt;script src="js/prism.js"&gt;lt;script&gt;
+  &lt;head&gt;
+  &lt;body&gt;
+    &lt;div id="header"&gt;
+      &lt;p&gt;The following example uses OpenLayers to display the dataset web services WFS JSON Nomenclature data for Io&lt;/p&gt;
+    &lt;div>
+    &lt;div id="map" class="map" style="width:800px; height:400px;"&gt;lt;div&gt;
+    &lt;script&gt;
+      var vectorSource = new ol.source.Vector({
+        format: new ol.format.GeoJSON(),
+        url: 'https://astrocloud.wr.usgs.gov/dataset/data/nomenclature/IO/WFS?request=getFeature&service=WFS&version=1.1.0&outputformat=application/json',
+        strategy: ol.loadingstrategy.bbox
+      });
+
+      var vector = new ol.layer.Vector({
+        source: vectorSource,
+        style: new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'rgba(0, 0, 255, 1.0)',
+            width: 2
+          })
+        })
+      });
+
+      var raster = new ol.layer.Tile({
+        source: new ol.source.TileWMS({
+          params: {
+           'LAYERS': 'SSI_color',
+           'FORMAT': 'image/png',
+           'MAP': '/maps/jupiter/io_simp_cyl.map',
+           'TRANSPARENT': 'false'
+          },
+          url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv"
+        })
+      });
+
+      var map = new ol.Map({
+        layers: [raster, vector],
+        target: document.getElementById('map'),
+        view: new ol.View({
+          center: [180,0],
+          maxZoom: 5,
+          zoom: 2,
+          projection: 'EPSG:4326'
+        })
+      });
+    &lt;/script&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+    </div>
+  </body>
+</html>
