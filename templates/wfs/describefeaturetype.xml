@@ -1,0 +1,41 @@
+<schema xmlns:ogc="http://www.opengis.net/ogc" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" targetNamespace="http://mapserver.gis.umn.edu/mapserver" elementFormDefault="qualified" version="0.1">
+  <import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+  <element name="MARS_POLY" type="gml:GeometryPropertyType" substitutionGroup="gml:_Feature"/>
+  <complexType name="MARS_POLYType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="msGeometry" type="gml:GeometryPropertyType" minOccurs="0" maxOccurs="1"/>
+          <element name="oid" type="string"/>
+          <element name="center_point" type="string"/>
+          <element name="diameter" type="string"/>
+          <element name="feature" type="string"/>
+          <element name="clean_feature" type="string"/>
+          <element name="type" type="string"/>
+          <element name="code" type="string"/>
+          <element name="target" type="string"/>
+          <element name="controlnet" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <element name="MARS_POINT" type="gml:GeometryPropertyType" substitutionGroup="gml:_Feature"/>
+  <complexType name="MARS_POINTType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="msGeometry" type="gml:GeometryPropertyType" minOccurs="0" maxOccurs="1"/>
+          <element name="oid" type="string"/>
+          <element name="the_geometry" type="string"/>
+          <element name="diameter" type="string"/>
+          <element name="feature" type="string"/>
+          <element name="clean_feature" type="string"/>
+          <element name="type" type="string"/>
+          <element name="code" type="string"/>
+          <element name="target" type="string"/>
+          <element name="controlnet" type="string"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>
