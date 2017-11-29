@@ -1,0 +1,70 @@
+/* Styles go here */
+body {
+  padding: 5px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container{
+  width: 800px;
+  float: left;
+}
+
+.inset {
+  position: absolute;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+  fill: white; 
+}
+
+.label {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  text-anchor: middle;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  /* pointer-events: none; */
+}
+
+.featuretypes-container {
+  valign: bottom;
+}
+
+.featuretypes-list {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+  align: left;
+  valign: bottom;
+  /* font: 16px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  font-size: 85%;
+}
+
+.title-container {
+  display: inline-flex;
+  vertical-align: top;
+  height: 80px;
+  /*
+  padding-left: 40px;
+  padding-right: 140px;
+  */
+  font-size: 150%;
+}
