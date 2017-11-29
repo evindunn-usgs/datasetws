@@ -1,0 +1,14 @@
+{
+ "name": "Planetary Nomenlature",
+ "children": [
+  {% for system, targets in results.items() %} {
+   "name": "{{system}}",
+   "children": [
+    {% for target, features in targets.items() %}{
+     "name": "{{target}}", "ID": "{{system}}.{{target}}",
+     "features": [ {% for feature in features %}
+      {"name": "{{feature.type}}", "ID": "{{target}}-{{feature.type}}", "size":{{feature.total}}, "url":"{{feature.url}}" } {% if not loop.last %},{% endif %}{% endfor %} ], "size": {{ features|sum(attribute='total') }}
+    }{% if not loop.last %},{% endif %}{% endfor %} ]
+  }{% if not loop.last %},{% endif %}{% endfor %} ]
+}
+
