@@ -12,16 +12,28 @@ Database Web Services
 ---------------------
 The USGS Astrogeology Science Center's database web services is a ReSTful framework for accessing multiple databases
 with consistent protocols. These services are provided to allow web developers, GIS users and anyone using an OGC
-compliant tool to access the data through a single gateway that is simple to configure in tools.  Currently, the Planetary Nomenclature database is searchable using the OGC WFS protocol in both GeoJSON and GML formats.  
+compliant tool to access the data through a single gateway that is simple to configure in tools.  Currently, the Planetary Nomenclature database is searchable using the OGC WFS protocol in both GeoJSON and GML formats.
 
 * List of available `Nomenclature WFS Services`_
 
-Additionally, there is a summary JSON interface for each database which can be used to populate navigation tools 
+Additionally, there is a summary JSON interface for each database which can be used to populate navigation tools
 
-* A `D3 Javascript`_ visualization of `Nomenclature Summary`_ and `PGM Summary`_ 
+* A `D3 Javascript`_ visualization of `Nomenclature Summary`_ and `PGM Summary`_
 
   * The raw `Nomenclature Summary JSON`_
   * The raw `PGM Summary JSON`_
+
+Creating Conda Environment
+--------------------------
+To run the web services, first create a Python 2.7 conda environment::
+  conda create -p /path/to/build/env python=2.7
+
+Then install the required modules::
+  conda install -c conda-forge -y flask flask-sqlalchemy geoalchemy2 gdal shapely geojson psycopg2
+
+Then, you can activate the conda environment and run the web application::
+  source active /path/to/build/env
+  python datasetws.py
 
 Tests and Coding Examples
 -------------------------
@@ -47,4 +59,3 @@ Classes and Files
    datasource
 
 * :ref:`search`
-
