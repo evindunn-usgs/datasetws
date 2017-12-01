@@ -28,10 +28,11 @@ Creating Conda Environment
 To run the web services, first create a Python 2.7 conda environment::
   conda create -p /path/to/build/env python=2.7
 
-Then install the required modules::
+Then activate the environment and install the required modules::
+  source active /path/to/build/env
   conda install -c conda-forge -y flask flask-sqlalchemy geoalchemy2 gdal shapely geojson psycopg2
 
-Then, you can activate the conda environment and run the web application::
+Then, run the web application::
   source active /path/to/build/env
   python datasetws.py
 
