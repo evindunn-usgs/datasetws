@@ -30,6 +30,7 @@ To run the web services, first create a Python 2.7 conda environment::
 
 Then activate the environment and install the required modules::
   source active /path/to/build/env
+
   conda install -c conda-forge -y flask flask-sqlalchemy geoalchemy2 gdal shapely geojson psycopg2
 
 Then, run the web application::
