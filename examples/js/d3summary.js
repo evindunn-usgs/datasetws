@@ -25,20 +25,32 @@ function circlePackSummary (div_id, json_url, bg_url) {
         view;
 
     svg.append("defs")
-      .data(nodes)
+      .data(nodes)A
+      .enter()
       .append("pattern")
-      .append("image")
-      .attr("xlink:href", function(d) { 
-        if (d.data.name == 'Planetary Nomenlature') return "chooserimages/MOON.jpg";
-        return "chooserimages/" + d.data.name + ".jpg"; })
-      .attr("id", function(d) { return d.data.name.replace(' ', '_'); } );
+        .attr("id", funtion(d) { return "dyn" + d.data.name; })
+        .attr("patternUnits", "userSpaceOnUse")
+        .attr("x", function (d) { return root.x; })
+        .attr("y", function (d) { return root.y; })
+        .attr("height", diameter - margin)
+        .attr("width", diameter - margin)
+        .append("image")
+          .attr("preserveAspectRatio", "xMidYMid")
+          .attr ("x", (diameter - margin) * -1)
+          .attr ("y", (diameter - margin) * -1)
+          .attr ("height", (diameter - margin) * 4)
+          .attr ("width", (diameter - margin) * 4)
+          .attr("xlink:href", function(d) {
+            var base_url = "http://astrocloud-dev.wr.usgs.gov/dataset/examples/d3/chooserimages/";
+            if (d.data.name == 'Planetary Nomenlature') return base_url + "MOON.jpg";
+            return base_url + d.data.name + ".jpg"; });
 
     var circle = g.selectAll("circle")
       .data(nodes)
       .enter().append("circle")
         .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-        .style("fill", function(d) { return d.children ? color(d.depth) : '#' + d.data.name; })
-        .style("fill", function(d) { return "#" + d.data.name; })
+        // .style("fill", function(d) { return d.children ? color(d.depth) : '#' + d.data.name; })
+        .attr("fill", function(d) { return "url(#dyn" + d.data.name + ")"; })
         .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
 
 
@@ -50,7 +62,7 @@ function circlePackSummary (div_id, json_url, bg_url) {
     //        })
     //       .style("opacity", 0)
     //       .attr("class", "barWrapperOuter");
-    
+
     var text = g.selectAll("text")
       .data(nodes)
       .enter()
@@ -103,7 +115,7 @@ function circlePackSummary (div_id, json_url, bg_url) {
 
       $('#target_details').show(1000);
     }
-  
+
     function zoomTo(v) {
       var k = diameter / v[2]; view = v;
       node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
@@ -117,7 +129,7 @@ function circlePackSummary (div_id, json_url, bg_url) {
       if (d.features) loopuntil = d.features.length;
       else return content;
 
-      var paddingFactor = (1 / loopuntil) * 100; 
+      var paddingFactor = (1 / loopuntil) * 100;
 
       var content = "<div class='title-container' style='padding-top:" + paddingFactor + "px;' >";
       content += "<div><p style='padding-left:40px; padding-right:10px;'>" + d.name + "</p></div>";
