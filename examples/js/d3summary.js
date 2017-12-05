@@ -28,13 +28,14 @@ function circlePackSummary (div_id, json_url, bg_url) {
       .data(nodes)A
       .enter()
       .append("pattern")
-        .attr("id", funtion(d) { return "dyn" + d.data.name; })
+        .attr("id", function(d) { return "dyn" + d.data.name; })
         .attr("patternUnits", "userSpaceOnUse")
         .attr("x", function (d) { return root.x; })
         .attr("y", function (d) { return root.y; })
         .attr("height", diameter - margin)
         .attr("width", diameter - margin)
         .append("image")
+          .attr("id", function(d) { return "dyn" + d.data.name + ".jpg"; })
           .attr("preserveAspectRatio", "xMidYMid")
           .attr ("x", (diameter - margin) * -1)
           .attr ("y", (diameter - margin) * -1)
@@ -118,7 +119,13 @@ function circlePackSummary (div_id, json_url, bg_url) {
 
     function zoomTo(v) {
       var k = diameter / v[2]; view = v;
-      node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
+      node.attr("transform", function(d) {
+        d3.select("#dyn" + d.data.name + ".jpg")
+          .attr ("x", d.x - v[0] * k)
+          .attr ("y", d.x - v[0] * k)
+          .attr ("height", d.r * k)
+          .attr ("width", d.r * k);
+        return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
       circle.attr("r", function(d) { return d.r * k; });
     }
 
