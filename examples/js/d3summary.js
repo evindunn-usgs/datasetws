@@ -25,7 +25,7 @@ function circlePackSummary (div_id, json_url, bg_url) {
         view;
 
     svg.append("defs")
-      .data(nodes)A
+      .data(nodes)
       .enter()
       .append("pattern")
         .attr("id", function(d) { return "dyn" + d.data.name; })
