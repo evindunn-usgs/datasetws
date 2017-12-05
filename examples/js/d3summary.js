@@ -120,9 +120,14 @@ function circlePackSummary (div_id, json_url, bg_url) {
     function zoomTo(v) {
       var k = diameter / v[2]; view = v;
       node.attr("transform", function(d) {
+        d3.select("#dyn" + d.data.name)
+          .attr ("x", (d.x - v[0]) * k)
+          .attr ("y", (d.x - v[0]) * k)
+          .attr ("height", d.r * k)
+          .attr ("width", d.r * k)
         d3.select("#dyn" + d.data.name + ".jpg")
-          .attr ("x", d.x - v[0] * k)
-          .attr ("y", d.x - v[0] * k)
+          .attr ("x", (d.x - v[0]) * k)
+          .attr ("y", (d.x - v[0]) * k)
           .attr ("height", d.r * k)
           .attr ("width", d.r * k);
         return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
