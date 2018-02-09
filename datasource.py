@@ -214,7 +214,7 @@ class PGM:
     if dataSource is None: return ['failed', 'to', 'open', 'shapefile']
     sql = 'SELECT * FROM ' + shape_table
 
-    if neutralSearch.get('target'):
+    if (neutralSearch.get('target') and neutralSearch.get('target').upper() != 'ALL'):
       target = neutralSearch.get('target').upper()
       sql += ' WHERE ' + target_name + '=\'' + target + '\''
 
