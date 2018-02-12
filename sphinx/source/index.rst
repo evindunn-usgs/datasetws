@@ -14,7 +14,7 @@ The USGS Astrogeology Science Center's database web services is a ReSTful framew
 with consistent protocols. These services are provided to allow web developers, GIS users and anyone using an OGC
 compliant tool to access the data through a single gateway that is simple to configure in tools.  Currently, the Planetary Nomenclature database is searchable using the OGC WFS protocol in both GeoJSON and GML formats.
 
-* List of available `Nomenclature WFS Services`_
+* List of available `Nomenclature and PGM WFS Services`_
 
 Additionally, there is a summary JSON interface for each database which can be used to populate navigation tools
 
@@ -44,7 +44,7 @@ MapServer baseline.
 
 * `Io WFS Nomenclature Openlayers Example`_
 
-.. _Nomenclature WFS Services: ../data
+.. _Nomenclature and PGM WFS Services: ../data
 .. _Nomenclature Summary: ../examples/d3/circlepack.html
 .. _PGM Summary: ../examples/d3/pgmpack.html
 .. _Nomenclature Summary JSON: ../data/nomenclature/summary
