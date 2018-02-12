@@ -215,7 +215,11 @@ class PGM:
     sql = 'SELECT * FROM ' + shape_table
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (neutralSearch.get('target') and neutralSearch.get('target').upper() != 'ALL'):
+=======
+    if neutralSearch.get('target'):
+>>>>>>> 03a803f60bfbf271fb85e64d571b3068d2d52aa0
 =======
     if neutralSearch.get('target'):
 >>>>>>> 03a803f60bfbf271fb85e64d571b3068d2d52aa0
