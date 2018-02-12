@@ -36,13 +36,13 @@ class wfs:
           neutralCriteria['protocol']['code'] = "MissingParameterValue"
           neutralCriteria['protocol']['locator'] = pk
           neutralCriteria['protocol']['error'] = "Request is missing required WFS parameter '" + pk + "'"
-  
-    criteriaKeywords = {'typeName':'featureType', 'featureID':'id', 'maxFeatures':'limit', 'sortBy':'sortby', 'propertyName':'columns', 'bbox':'boundingbox'}
+
+    criteriaKeywords = {'typeName':'featureType', 'featureID':'id', 'id':'id', 'maxFeatures':'limit', 'sortBy':'sortby', 'propertyName':'columns', 'bbox':'boundingbox'}
 
     for key, map in criteriaKeywords.items():
       if request.args.get(key):
         neutralCriteria['criteria'][map] = request.args.get(key).lower()
-  
+
     # also add WKT from bounding box, if it exists
     if request.args.get('bbox'):
       extents = [x.strip for x in request.args.get('bbox').split(',')]
@@ -67,13 +67,13 @@ class wfs:
         #return render_template('wfs/error.xml', exceptioncode=code, locator=locator, error=error)
         layout = 'wfs/getfeature.json'
         mime = 'application/json;charset=UTF-8'
-  
+
     return Response(render_template(layout, metadata=metadata), mimetype=mime)
     # return Response(render_template(layout, metadata=metadata), mimetype=mime)
-  
+
   def renderError(code, locator, error):
     return render_template('wfs/error.xml', exceptioncode=code, locator=locator, error=error)
-  
+
   def renderResponse(self, metadata):
     requests = {}
     requests['getcapabilities'] = self.renderGetCapabilities
@@ -87,10 +87,10 @@ class wfs:
     return requests[wfsrequest](metadata)
     # except:
     #   return renderError("OperationNotSupported", "request", "Unknown operation requested '" + wfsrequest + "'")
-  
+
   def loadInterfaces(self):
     interfaces = {}
     interfaces['neutralSearch'] = self.neutralSearch
     interfaces['renderResponse'] = self.renderResponse
-  
+
     return interfaces
