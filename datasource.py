@@ -20,7 +20,7 @@ class datasourcebase(object):
   def factory(source, config):
     """The factory method of the datasourcebase class is used to create data source classes such as Nome7yynclature
     and the Planetary Geologic Mappers
-    
+
     :param source: The name of the data source class to create ('nomenclature', 'pgm')
     :param config: A Flask config object from instance/config.py
 
@@ -99,7 +99,7 @@ class Nomenclature:
 
   def nomenSearch(self, neutralSearch):
     """Uses the neutral search from the selected protocol to search the Nomenclature database and return the results
-    
+
     :param neutralSearch: a dict of search criteria parsed by the protocol
 
     :rtype: a dict of the search results
@@ -150,7 +150,7 @@ class Nomenclature:
         # url = urllib.quote(urltmp)
       treeResult[result.system][result.target].append({"type": result.feature_type, "total": result.total, "url": url.replace(" ", "%20")})
 
-  
+
     return treeResult
 
   def listTargets(self):
@@ -214,9 +214,17 @@ class PGM:
     if dataSource is None: return ['failed', 'to', 'open', 'shapefile']
     sql = 'SELECT * FROM ' + shape_table
 
+    needWhere = True
     if (neutralSearch.get('target') and neutralSearch.get('target').upper() != 'ALL'):
       target = neutralSearch.get('target').upper()
+      needWhere = False
       sql += ' WHERE ' + target_name + '=\'' + target + '\''
+
+    if neutralSearch['criteria'].get('id'):
+      if needWhere:
+        needWhere = False
+    sql += ' WHERE '
+    sql += 'fid=' + neutralSearch['criteria'].get('id')
 
     layer = dataSource.ExecuteSQL(str(sql))
     ldefn = layer.GetLayerDefn()
@@ -262,7 +270,7 @@ class PGM:
         for stat in treeResult[system][target]:
           if stat['type'].upper() == status.upper():
             stat['total'] += 1
-  
+
     return treeResult
 
   def listTargets(self):
@@ -279,7 +287,7 @@ class PGM:
     layer = dataSource.ExecuteSQL(sql)
     for i, feature in enumerate(layer):
       resultTargets.append(feature.GetField(0))
-     
+
     return resultTargets
 
   def loadInterfaces(self):
