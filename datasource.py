@@ -220,11 +220,13 @@ class PGM:
       needWhere = False
       sql += ' WHERE ' + target_name + '=\'' + target + '\''
 
-    if neutralSearch['criteria'].get('id'):
+    if isinstance(neutralSearch['criteria'].get('id'), basestring):
       if needWhere:
         needWhere = False
-    sql += ' WHERE '
-    sql += 'fid=' + neutralSearch['criteria'].get('id')
+        sql += ' WHERE '
+      else:
+        sql += ' AND '
+      sql += 'ORIG_FID=' + neutralSearch['criteria'].get('id')
 
     layer = dataSource.ExecuteSQL(str(sql))
     ldefn = layer.GetLayerDefn()
@@ -233,7 +235,10 @@ class PGM:
       shpgeom = shape(json.loads(feature.GetGeometryRef().ExportToJson()))
       currFeature = {}
       for key in searchResult['columns']:
-        currFeature[key] = feature.GetField(key)
+        if isinstance(feature.GetField(key), basestring):
+          currFeature[key] = feature.GetField(key).replace('\n', "<br/>")
+        else:
+          currFeature[key] = feature.GetField(key)
       searchResult['results'].append(Feature(id=feature.GetFID(), geometry=shpgeom, properties=currFeature))
 
     return searchResult
