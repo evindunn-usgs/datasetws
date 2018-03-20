@@ -41,7 +41,10 @@ class wfs:
 
     for key, map in criteriaKeywords.items():
       if request.args.get(key):
-        neutralCriteria['criteria'][map] = request.args.get(key).lower()
+        if isinstance(request.args.get(key), basestring):
+          neutralCriteria['criteria'][map] = request.args.get(key).lower()
+        else:
+          neutralCriteria['criteria'][map] = request.args.get(key)
 
     # also add WKT from bounding box, if it exists
     if request.args.get('bbox'):
