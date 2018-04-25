@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from flask import Flask, abort, flash, redirect, render_template, request, url_for, Response
+from flask_cors import CORS
 from sqlalchemy import Column, DateTime, String, Integer, ForeignKey, func
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
@@ -9,6 +10,7 @@ from datasource import datasourcebase, Nomenclature, PGM
 from dswfs import wfs
 
 WSApp = Flask(__name__, instance_relative_config=True)
+CORS(WSApp)
 WSApp.debug=True
 WSApp.config.from_pyfile('config.py')
 
