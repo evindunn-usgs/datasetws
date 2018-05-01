@@ -49,8 +49,8 @@ class wfs:
     # also add WKT from bounding box, if it exists
     # BBOX=38.71,-114.33,43.36,-105.36
     if request.args.get('bbox'):
-      extents = [x.strip for x in request.args.get('bbox').split(',')]
-      neutralCriteria['criteria']['bboxWKT'] = "POLYGON ({a} {b}, {a} {d}, {c} {d}, {c} {b}, {a} {b})".format(a=extents[0], b=extents[1], c=extents[2], d=extents[3])
+      extents = [x.strip() for x in request.args.get('bbox').split(',')]
+      neutralCriteria['criteria']['bboxWKT'] = "POLYGON (({a} {b}, {a} {d}, {c} {d}, {c} {b}, {a} {b}))".format(a=extents[0], b=extents[1], c=extents[2], d=extents[3])
 
     return neutralCriteria
 
