@@ -226,7 +226,8 @@ class PGM:
         sql += ' WHERE '
       else:
         sql += ' AND '
-      sql += 'ORIG_FID=' + neutralSearch['criteria'].get('id')
+      # sql += 'ORIG_FID=' + neutralSearch['criteria'].get('id')
+      sql += 'FID=' + neutralSearch['criteria'].get('id')
 
     layer = dataSource.ExecuteSQL(str(sql))
     ldefn = layer.GetLayerDefn()
